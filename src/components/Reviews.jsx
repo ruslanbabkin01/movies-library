@@ -1,12 +1,6 @@
-import { fetchReviewMovie } from '../../api/themoviedbAPI';
+import { fetchReviewMovie } from '../api/themoviedbAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  ReviewsList,
-  AuthorName,
-  ReviewsText,
-  DontReviews,
-} from './Reviews.styled';
 
 export default function Reviews() {
   const { movieId } = useParams();
@@ -27,18 +21,20 @@ export default function Reviews() {
   return (
     <>
       {reviews.length > 0 ? (
-        <ReviewsList>
+        <ul className="flex flex-col gap-5 py-0 px-4">
           {reviews.map(({ id, author, content }) => (
-            <li key={id}>
-              <h4>
-                Author:<AuthorName>{author}</AuthorName>
+            <li className="p-1 " key={id}>
+              <h4 className="mb-2">
+                Author:<span className="ml-2 font-medium">{author}</span>
               </h4>
-              <ReviewsText>{content}</ReviewsText>
+              <p className="mb-2 tracking-wide">{content}</p>
             </li>
           ))}
-        </ReviewsList>
+        </ul>
       ) : (
-        <DontReviews>We dont have any reviews for this movie</DontReviews>
+        <p className="m-3 text-center text-red-500">
+          We dont have any reviews for this movie
+        </p>
       )}
     </>
   );

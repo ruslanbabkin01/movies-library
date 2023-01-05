@@ -1,7 +1,6 @@
-import { VideoGallery } from '../components/VideoGallery/VideoGallery';
+import { VideoGallery } from '../components/VideoGallery';
 import { fetchTrendMovies } from '../api/themoviedbAPI';
 import { useState, useEffect } from 'react';
-import { Box } from 'styles';
 
 export default function Home() {
   const [movies, setMovies] = useState(null);
@@ -20,9 +19,9 @@ export default function Home() {
 
   return (
     <main>
-      <Box as="h2" textAlign="center" m="10px">
+      <h2 className="text-center m-3 text-3xl font-bold text-lime-700">
         Trending today
-      </Box>
+      </h2>
       {movies && <VideoGallery movies={movies} />}
     </main>
   );

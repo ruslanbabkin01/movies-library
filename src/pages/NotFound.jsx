@@ -1,21 +1,12 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 export default function NotFound() {
   return (
-    <ErrorText>
+    <p className="text-center p-6 text-2xl">
       This page was not found, please return to
-      <ErrorLink to="/">Home page</ErrorLink>
-    </ErrorText>
+      <Link className="text-blue" to="/">
+        Home page
+      </Link>
+    </p>
   );
 }
-
-export const ErrorText = styled.p`
-  font-size: 24px;
-  text-align: center;
-  padding: 24px;
-`;
-
-export const ErrorLink = styled(Link)`
-  color: blue;
-`;
