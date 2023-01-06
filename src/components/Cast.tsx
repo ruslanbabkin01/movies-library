@@ -26,25 +26,30 @@ export default function Cast() {
         <>
           <ul className="flex flex-wrap gap-3 p-3 justify-center">
             {actorsList &&
-              actorsList.map(({ id, profile_path, name, character }) => (
-                <li className="flex flex-col basis-1/6 rounded border" key={id}>
-                  <img
-                    className="grow object-cover"
-                    src={
-                      profile_path
-                        ? `https://image.tmdb.org/t/p/original${profile_path}`
-                        : defAvatar
-                    }
-                    alt={name}
-                  />
-                  <div className="p-2">
-                    <h4>Name:</h4>
-                    <span className="font-bold">{name}</span>
-                    <h4>Character:</h4>
-                    <span className="font-bold">{character}</span>
-                  </div>
-                </li>
-              ))}
+              actorsList.map(
+                ({ id, profile_path, name, character, original_name }) => (
+                  <li
+                    className="flex flex-col basis-1/6 rounded border"
+                    key={id}
+                  >
+                    <img
+                      className="grow object-cover"
+                      src={
+                        profile_path
+                          ? `https://image.tmdb.org/t/p/original${profile_path}`
+                          : defAvatar
+                      }
+                      alt={name}
+                    />
+                    <div className="p-2">
+                      <h4>Name:</h4>
+                      <span className="font-bold">{name ?? original_name}</span>
+                      <h4>Character:</h4>
+                      <span className="font-bold">{character}</span>
+                    </div>
+                  </li>
+                )
+              )}
           </ul>
         </>
       )}
