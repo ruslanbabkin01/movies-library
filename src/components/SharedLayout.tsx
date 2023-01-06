@@ -1,6 +1,6 @@
-import { Loader } from 'components';
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import {Loader} from './Loader';
 
 export const SharedLayout = () => {
   const activeStyle = {

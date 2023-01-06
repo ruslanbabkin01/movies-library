@@ -1,16 +1,13 @@
+import { IMovie } from 'types/movie';
 import defMovie from '../images/defMovie.webp';
 
+interface IModvieCardProps {
+  movie: IMovie;
+}
+
 export const MovieCard = ({
-  movie: {
-    poster_path,
-    title,
-    name,
-    vote_average,
-    overview,
-    release_date,
-    genres,
-  },
-}) => (
+  movie: { poster_path, title, vote_average, overview, release_date, genres },
+}: IModvieCardProps) => (
   <div className="flex p-5 w-9/12 ml-5">
     <img
       className="w-80 object-cover"
@@ -23,7 +20,7 @@ export const MovieCard = ({
     />
     <div className="ml-5">
       <h2 className="font-bold text-2xl">
-        {title ?? name}
+        {title}
         <span>({Number.parseInt(release_date)})</span>
       </h2>
       <p className="my-5 mx-0 font-semibold">
@@ -36,7 +33,3 @@ export const MovieCard = ({
     </div>
   </div>
 );
-
-// MovieCard.propTypes = {
-//   movie: PropTypes.object.isRequired,
-// };

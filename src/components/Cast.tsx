@@ -2,10 +2,11 @@ import { fetchActorsMovie } from '../api/themoviedbAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import defAvatar from '../images/defAvatar.jpeg';
+import { ICast } from 'types/cast';
 
 export default function Cast() {
   const { movieId } = useParams();
-  const [actorsList, setActorsList] = useState(null);
+  const [actorsList, setActorsList] = useState<ICast[]>([]);
 
   useEffect(() => {
     async function fetchMovie() {

@@ -1,16 +1,20 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-export const Searchbar = ({ onSubmit }) => {
+interface ISearchBarProps {
+  onSubmit: (query: string) => void;
+}
+
+export const Searchbar = ({ onSubmit }: ISearchBarProps) => {
   const [query, setQuery] = useState('');
 
-  const handleQueryChange = event =>
+  const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setQuery(event.currentTarget.value.toLowerCase());
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     const normalizedQuery = query.trim();
     if (normalizedQuery === '') {
       return toast.info('Insert correct request', {
@@ -54,7 +58,3 @@ export const Searchbar = ({ onSubmit }) => {
     </header>
   );
 };
-
-// Searchbar.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };

@@ -1,7 +1,7 @@
 import { ThreeCircles } from 'react-loader-spinner';
 
 export const Loader = () => (
-  <div className='w-full flex justify-center'>
+  <div className="w-full flex justify-center">
     <ThreeCircles
       height="100"
       width="100"
@@ -16,5 +16,3 @@ export const Loader = () => (
     />
   </div>
 );
-
-export default Loader;

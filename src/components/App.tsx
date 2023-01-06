@@ -1,7 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import { lazy } from 'react';
-import { SharedLayout } from './index';
 import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout';
 
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));

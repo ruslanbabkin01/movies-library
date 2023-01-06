@@ -1,12 +1,14 @@
-import { Searchbar } from 'components';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from '../api/themoviedbAPI';
-import { VideoGallery, Loader } from 'components';
 import { useEffect, useState, Suspense } from 'react';
 import { toast } from 'react-toastify';
+import { Searchbar } from 'components/Searchbar';
+import { VideoGallery } from 'components/VideoGallery';
+import { Loader } from 'components/Loader';
+import { IMovies } from 'types/movies';
 
 export default function Movies() {
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState<IMovies[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -27,8 +29,8 @@ export default function Movies() {
     fetchMovie();
   }, [query]);
 
-  function handleFormSubmit(search) {
-    const nextParams = search !== '' ? { query: search } : {};
+  function handleFormSubmit(search: string) {
+    const nextParams:any = search !== '' ? { query: search } : {};
     setSearchParams(nextParams);
   }
 

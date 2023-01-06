@@ -1,10 +1,11 @@
 import { fetchReviewMovie } from '../api/themoviedbAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { IRewiew } from 'types/reviews';
 
 export default function Reviews() {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState<IRewiew[]>([]);
 
   useEffect(() => {
     async function fetchMovie() {

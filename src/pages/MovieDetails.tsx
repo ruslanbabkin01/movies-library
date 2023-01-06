@@ -1,10 +1,12 @@
 import { Outlet, useParams, useLocation, NavLink } from 'react-router-dom';
 import { Suspense, useEffect, useState } from 'react';
 import { fetchAboutMovie } from '../api/themoviedbAPI';
-import { MovieCard, Loader } from 'components';
+import { MovieCard } from 'components/MovieCard';
+import { Loader } from 'components/Loader';
+import { IMovie } from 'types/movie';
 
 export default function MovieDetails() {
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState<IMovie>();
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
@@ -12,7 +14,7 @@ export default function MovieDetails() {
   useEffect(() => {
     async function fetchMovie() {
       try {
-        const data = await fetchAboutMovie(Number(movieId));
+        const data = await fetchAboutMovie(movieId);
         setMovie(data);
       } catch (error) {
         console.log(error);

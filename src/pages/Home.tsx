@@ -1,16 +1,19 @@
 import { VideoGallery } from '../components/VideoGallery';
 import { fetchTrendMovies } from '../api/themoviedbAPI';
 import { useState, useEffect } from 'react';
+import { IMovies } from 'types/movies';
+import { AxiosError } from 'axios';
 
 export default function Home() {
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState<IMovies[]>([]);
 
   useEffect(() => {
     async function fetchMovies() {
       try {
         const data = await fetchTrendMovies();
         setMovies(data);
-      } catch (error) {
+      } catch (e: unknown) {
+        const error = e as AxiosError;
         console.log(error.message);
       }
     }

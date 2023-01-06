@@ -1,6 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
+import { IMovies } from 'types/movies';
 
-export const VideoGallery = ({ movies }) => {
+interface IVideoGalleryProps {
+  movies: IMovies[];
+}
+
+export const VideoGallery = ({ movies }: IVideoGalleryProps) => {
   const location = useLocation();
 
   return (
@@ -28,7 +33,3 @@ export const VideoGallery = ({ movies }) => {
     </ul>
   );
 };
-
-// VideoGallery.prototype = {
-//   movies: PropTypes.array.isRequired,
-// };
