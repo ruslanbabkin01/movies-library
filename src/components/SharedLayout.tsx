@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import {Loader} from './Loader';
+import { Loader } from './Loader';
 
 export const SharedLayout = () => {
   const activeStyle = {
@@ -24,6 +24,13 @@ export const SharedLayout = () => {
             to="/movies"
           >
             Movies
+          </NavLink>
+          <NavLink
+            className="py-2 px-7 rounded  bg-blue-400 text-white my-0 mx-10 no-underline font-medium"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            to="/library"
+          >
+            Library
           </NavLink>
         </nav>
       </header>
