@@ -29,22 +29,22 @@ export default function MovieDetails() {
   };
 
   return (
-    <>
+    <div className="mx-auto">
       <NavLink
-        className="text-black bg-blue-500 border bg-blue px-8 py-2 mt-5 ml-5 rounded-lg cursor-pointer hover:text-white hover:bg-red-500 focus:text-white focus:bg-red-500"
+        className="inline-block px-6 py-1 mb-3 ml-20 rounded cursor-pointer bg-blue-500 text-white hover:bg-red-600 focus:text-white focus:bg-red-600"
         to={backLinkHref}
       >
         Back
       </NavLink>
       {movie && <MovieCard movie={movie} />}
-      <h2 className="p-2 mb-5 text-center font-semibold text-lg">
+      <h2 className="mb-4 text-center font-semibold text-lg">
         Additional information
       </h2>
-      <ul className="flex justify-center mb-5">
-        <li className="mx-5">
+      <ul className="flex justify-center gap-4 mb-5">
+        <li className="">
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            className="text-white bg-blue-500 p-2 py-3 px-8 my-3 mx-5 rounded-lg cursor-pointer"
+            className="text-white bg-blue-500 py-2 px-5 rounded cursor-pointer hover:bg-red-600 focus:bg-red-600"
             to="cast"
           >
             Cast
@@ -53,7 +53,7 @@ export default function MovieDetails() {
         <li className="mx-5">
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            className="text-white bg-blue-500 py-3 px-8 my-3 mx-5 rounded-lg cursor-pointer"
+            className="text-white bg-blue-500 py-2 px-5 rounded cursor-pointer hover:bg-red-600 focus:bg-red-600"
             to="reviews"
           >
             Reviews
@@ -64,6 +64,6 @@ export default function MovieDetails() {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </>
+    </div>
   );
 }

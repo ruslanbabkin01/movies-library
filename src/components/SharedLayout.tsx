@@ -8,25 +8,25 @@ export const SharedLayout = () => {
   };
 
   return (
-    <div className="mx-auto py-1 px-4">
-      <header className="flex py-2 px-0 border-b-1 border-black">
-        <nav className="flex mx-auto">
+    <div className="mx-auto">
+      <header className="flex mb-3 py-2">
+        <nav className="flex mx-auto gap-4">
           <NavLink
-            className="py-2 px-7 rounded bg-blue-400 text-white my-0 mx-10 no-underline font-medium "
+            className="py-2 px-5 rounded bg-blue-400 text-white my-0 no-underline font-medium "
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/"
           >
             Home
           </NavLink>
           <NavLink
-            className="py-2 px-7 rounded  bg-blue-400 text-white my-0 mx-10 no-underline font-medium"
+            className="py-2 px-5 rounded  bg-blue-400 text-white my-0 no-underline font-medium"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/movies"
           >
             Movies
           </NavLink>
           <NavLink
-            className="py-2 px-7 rounded  bg-blue-400 text-white my-0 mx-10 no-underline font-medium"
+            className="py-2 px-5 rounded  bg-blue-400 text-white my-0 no-underline font-medium"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/library"
           >

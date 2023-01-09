@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="">
       <h2 className="text-center m-3 text-3xl font-bold text-lime-700">
         Trending today
       </h2>

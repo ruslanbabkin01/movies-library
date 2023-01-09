@@ -22,7 +22,7 @@ export default function Reviews() {
   return (
     <>
       {reviews.length > 0 ? (
-        <ul className="flex flex-col gap-5 py-0 px-4">
+        <ul className="flex flex-col gap-5 py-0 px-4 md:px-16">
           {reviews.map(({ id, author, content }) => (
             <li className="p-1 " key={id}>
               <h4 className="mb-2">
@@ -33,7 +33,7 @@ export default function Reviews() {
           ))}
         </ul>
       ) : (
-        <p className="m-3 text-center text-red-500">
+        <p className="m-3  text-2xl font-semibold text-center text-red-500">
           We dont have any reviews for this movie
         </p>
       )}

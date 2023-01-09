@@ -9,17 +9,17 @@ export const VideoGallery = ({ movies }: IVideoGalleryProps) => {
   const location = useLocation();
 
   return (
-    <ul className="flex flex-wrap justify-center p-3 gap-4">
+    <ul className="md:flex md:flex-wrap justify-center p-3 gap-4">
       {movies.map(
         ({ id, title, poster_path, original_name, original_title }) => (
-          <li className="basis-1/6 shadow-xl" key={id}>
+          <li className="lg:basis-1/6 md:basis-1/4 shadow-xl " key={id}>
             <Link
               className="flex flex-col"
               to={`/movies/${id}`}
               state={{ from: location }}
             >
               <img
-                className="object-cover ease-out duration-300 hover:scale-105 hover:cursor-zoom-in "
+                className="object-cover ease-out duration-300 hover:scale-105 hover:cursor-zoom-in rounded-md border "
                 src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                 alt={title}
               />
