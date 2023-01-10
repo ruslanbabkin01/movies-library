@@ -1,34 +1,58 @@
 import { IMovie } from 'types/movie';
 import defMovie from '../images/defMovie.webp';
 import { useLocalStorage } from 'hooks/useLocalStorage';
-import { useToggle } from 'hooks/useToggle';
+import { useEffect, useState } from 'react';
 
 interface IModvieCardProps {
   movie: IMovie;
 }
 
 export const MovieCard = ({ movie }: IModvieCardProps) => {
+  const [currentMovieId, setCurrentMovieId] = useLocalStorage('currentMovie');
   const [watched, setWatched] = useLocalStorage('watchedMovies', []);
   const [queue, setQueue] = useLocalStorage('queueMovies', []);
-  const { isAdd: isAddToWatched, toggle: toggleIsAddToWatched } =
-    useToggle(false);
-  const { isAdd: isAddToQueue, toggle: toggleIsAddToQueue } = useToggle(false);
+  const [isAddToWatched, setIsAddWathed] = useState(false);
+  const [isAddToQueue, setIsAddQueue] = useState(false);
 
-  // function checkCurruntMovie(array: IMovie[], id: number, togleFunc: Function) {
-  //   const findCurrentMovie = array.find((item: IMovie) => item.id === id);
-  //   if (findCurrentMovie) togleFunc();
-  // }
+  useEffect(() => {
+    setCurrentMovieId(movie.id);
+    checkCurrentMovie(watched, currentMovieId, setIsAddWathed);
+    checkCurrentMovie(queue, currentMovieId, setIsAddQueue);
+  }, [
+    currentMovieId,
+    movie.id,
+    queue,
+    setCurrentMovieId,
+    setIsAddQueue,
+    setIsAddWathed,
+    watched,
+  ]);
+
+  function checkCurrentMovie(
+    array: IMovie[],
+    currentMovieId: number,
+    togleFunc: Function
+  ) {
+    const findCurrentMovie = array.find(
+      (item: IMovie) => item.id === currentMovieId
+    );
+    if (findCurrentMovie) {
+      togleFunc(true);
+    } else {
+      togleFunc(false);
+    }
+  }
 
   function findInWatchedMovie(id: number) {
     const isFind = watched.find((item: IMovie) => item.id === id);
     if (isFind) {
       const newArrayMovies = watched.filter((item: IMovie) => item.id !== id);
       setWatched([...newArrayMovies]);
-      toggleIsAddToWatched();
+      setIsAddWathed(false);
       return;
     }
     setWatched([...watched, movie]);
-    toggleIsAddToWatched();
+    setIsAddWathed(true);
   }
 
   function findInQueueMovie(id: number) {
@@ -36,19 +60,15 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
     if (isFind) {
       const newArrayMovies = queue.filter((item: IMovie) => item.id !== id);
       setQueue([...newArrayMovies]);
-      toggleIsAddToQueue();
+      setIsAddQueue(false);
       return;
     }
     setQueue([...queue, movie]);
-    toggleIsAddToQueue();
+    setIsAddQueue(true);
   }
 
-  const handleAddToWatched = () => {
-    findInWatchedMovie(movie.id);
-  };
-
-  const handleAddToQueue = () => {
-    findInQueueMovie(movie.id);
+  const activeStyle = {
+    background: 'red',
   };
 
   return (
@@ -83,16 +103,18 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
         <ul className="flex gap-4 justify-center xl:gap-10 xl:justify-start">
           <li>
             <button
-              onClick={handleAddToWatched}
+              onClick={() => findInWatchedMovie(movie.id)}
               className="bg-blue-500 p-2 rounded hover:bg-red-600 text-white focus:bg-red-600"
+              style={isAddToWatched ? activeStyle : undefined}
             >
               {isAddToWatched ? 'Remove from watched' : 'Add to watched'}
             </button>
           </li>
           <li>
             <button
-              onClick={handleAddToQueue}
+              onClick={() => findInQueueMovie(movie.id)}
               className="bg-blue-500 p-2 rounded hover:bg-red-600 text-white focus:bg-red-600"
+              style={isAddToQueue ? activeStyle : undefined}
             >
               {isAddToQueue ? 'Remove from queue' : 'Add to queue'}
             </button>
