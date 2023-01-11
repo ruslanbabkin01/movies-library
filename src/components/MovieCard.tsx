@@ -36,11 +36,7 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
     const findCurrentMovie = array.find(
       (item: IMovie) => item.id === currentMovieId
     );
-    if (findCurrentMovie) {
-      togleFunc(true);
-    } else {
-      togleFunc(false);
-    }
+    findCurrentMovie ? togleFunc(true) : togleFunc(false);
   }
 
   function findInWatchedMovie(id: number) {

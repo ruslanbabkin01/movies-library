@@ -1,6 +1,6 @@
 declare module '*.jpg' {
-  const path: string;
-  export default path;
+  const sadCat: string;
+  export default sadCat;
 }
 
 declare module '*.jpeg' {
