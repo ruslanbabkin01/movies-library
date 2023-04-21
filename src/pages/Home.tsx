@@ -5,7 +5,7 @@ import { IMovies } from 'types/movies';
 import { AxiosError } from 'axios';
 
 export default function Home() {
-  const [movies, setMovies] = useState<IMovies[]>([]);
+  const [movies, setMovies] = useState<IMovies[] | undefined>([]);
 
   useEffect(() => {
     async function fetchMovies() {
@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="">
+    <main>
       <h2 className="text-center m-3 text-3xl font-bold text-lime-700">
         Trending today
       </h2>

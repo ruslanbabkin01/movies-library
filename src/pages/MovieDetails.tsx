@@ -4,6 +4,8 @@ import { fetchAboutMovie } from '../api/themoviedbAPI';
 import { MovieCard } from 'components/MovieCard';
 import { Loader } from 'components/Loader';
 import { IMovie } from 'types/movie';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 export default function MovieDetails() {
   const [movie, setMovie] = useState<IMovie>();
@@ -16,8 +18,10 @@ export default function MovieDetails() {
       try {
         const data = await fetchAboutMovie(movieId);
         setMovie(data);
-      } catch (error) {
-        console.log(error);
+     } catch (e: unknown) {
+        const error = e as AxiosError;
+        console.log(error.message);
+        toast.error(error.message)
       }
     }
     fetchMovie();

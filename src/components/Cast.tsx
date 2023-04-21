@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import defAvatar from '../images/defAvatar.jpeg';
 import { ICast } from 'types/cast';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 export default function Cast() {
   const { movieId } = useParams();
@@ -13,8 +15,10 @@ export default function Cast() {
       try {
         const data = await fetchActorsMovie(movieId);
         setActorsList(data);
-      } catch (error) {
-        console.log(error);
+      } catch (e: unknown) {
+        const error = e as AxiosError;
+        console.log(error.message);
+        toast.error(error.message)
       }
     }
     fetchMovie();

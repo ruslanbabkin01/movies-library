@@ -1,6 +1,8 @@
+import { AxiosError } from 'axios';
 import { fetchReviewMovie } from '../api/themoviedbAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { IRewiew } from 'types/reviews';
 
 export default function Reviews() {
@@ -12,8 +14,10 @@ export default function Reviews() {
       try {
         const data = await fetchReviewMovie(movieId);
         setReviews(data);
-      } catch (error) {
-        console.log(error);
+     } catch (e: unknown) {
+        const error = e as AxiosError;
+        console.log(error.message);
+        toast.error(error.message)
       }
     }
     fetchMovie();

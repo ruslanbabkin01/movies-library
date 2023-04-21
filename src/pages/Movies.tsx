@@ -6,6 +6,7 @@ import { Searchbar } from 'components/Searchbar';
 import { VideoGallery } from 'components/VideoGallery';
 import { Loader } from 'components/Loader';
 import { IMovies } from 'types/movies';
+import { AxiosError } from 'axios';
 
 export default function Movies() {
   const [movies, setMovies] = useState<IMovies[]>([]);
@@ -22,8 +23,10 @@ export default function Movies() {
           toast.info(`${query} not found`);
           return;
         }
-      } catch (error) {
-        console.log(error);
+      } catch (e: unknown) {
+        const error = e as AxiosError;
+        console.log(error.message);
+        toast.error(error.message)
       }
     }
     fetchMovie();

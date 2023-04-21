@@ -4,21 +4,23 @@ import { IMovie } from './../types/movie';
 import axios from 'axios';
 import { IServerResponse, IMovies } from 'types/movies';
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
-const API_KEY = '13d1d6108716c95692977ae4bce9cff7';
+const TheMovieDb = axios.create({
+  baseURL: process.env.REACT_APP_THEMOVIE_URL
+})
 
-axios.defaults.baseURL = `https://api.themoviedb.org/3`;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export async function fetchTrendMovies() {
-  const { data } = await axios.get<IServerResponse<IMovies>>(
+    const { data } = await TheMovieDb<IServerResponse<IMovies>>(
     `/trending/all/day?api_key=${API_KEY}`
   );
   const { results } = data;
   return results;
+  
 }
 
 export async function fetchSearchMovies(query: string, page = 1) {
-  const { data } = await axios.get<IServerResponse<IMovies>>(
+  const { data } = await TheMovieDb<IServerResponse<IMovies>>(
     `/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`
   );
   const { results } = data;
@@ -26,14 +28,14 @@ export async function fetchSearchMovies(query: string, page = 1) {
 }
 
 export async function fetchAboutMovie(movieId: string | undefined) {
-  const { data } = await axios.get<IMovie>(
+  const { data } = await TheMovieDb<IMovie>(
     `/movie/${movieId}?api_key=${API_KEY}`
   );
   return data;
 }
 
 export async function fetchActorsMovie(movieId: string | undefined) {
-  const { data } = await axios.get<ICastResponse<ICast>>(
+  const { data } = await TheMovieDb<ICastResponse<ICast>>(
     `/movie/${movieId}/credits?api_key=${API_KEY}`
   );
   const { cast } = data;
@@ -41,7 +43,7 @@ export async function fetchActorsMovie(movieId: string | undefined) {
 }
 
 export async function fetchReviewMovie(movieId: string | undefined) {
-  const { data } = await axios.get<IResponseReviews<IRewiew>>(
+  const { data } = await TheMovieDb<IResponseReviews<IRewiew>>(
     `/movie/${movieId}/reviews?api_key=${API_KEY}`
   );
   const { results } = data;
