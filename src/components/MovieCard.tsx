@@ -11,12 +11,12 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
   const [currentMovieId, setCurrentMovieId] = useLocalStorage('currentMovie');
   const [watched, setWatched] = useLocalStorage('watchedMovies', []);
   const [queue, setQueue] = useLocalStorage('queueMovies', []);
-  const [isAddToWatched, setIsAddWathed] = useState(false);
+  const [isAddToWatched, setIsAddWatched] = useState(false);
   const [isAddToQueue, setIsAddQueue] = useState(false);
 
   useEffect(() => {
     setCurrentMovieId(movie.id);
-    checkCurrentMovie(watched, currentMovieId, setIsAddWathed);
+    checkCurrentMovie(watched, currentMovieId, setIsAddWatched);
     checkCurrentMovie(queue, currentMovieId, setIsAddQueue);
   }, [
     currentMovieId,
@@ -24,7 +24,7 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
     queue,
     setCurrentMovieId,
     setIsAddQueue,
-    setIsAddWathed,
+    setIsAddWatched,
     watched,
   ]);
 
@@ -44,11 +44,11 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
     if (isFind) {
       const newArrayMovies = watched.filter((item: IMovie) => item.id !== id);
       setWatched([...newArrayMovies]);
-      setIsAddWathed(false);
+      setIsAddWatched(false);
       return;
     }
     setWatched([...watched, movie]);
-    setIsAddWathed(true);
+    setIsAddWatched(true);
   }
 
   function findInQueueMovie(id: number) {
