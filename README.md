@@ -26,7 +26,7 @@ The application has 3 pages Home, Movies, and Library. The Home page loads popul
 
 Clone the repository to your local machine:
 ```bash
-git clone <https://github.com/ruslanbabkin01/movies-library.git>
+git clone https://github.com/ruslanbabkin01/movies-library.git
 ```
 Install the project dependencies:
 ```bash
