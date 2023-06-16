@@ -5,10 +5,10 @@ import axios from 'axios';
 import { IServerResponse, IMovies } from 'types/movies';
 
 const TheMovieDb = axios.create({
-  baseURL: process.env.REACT_APP_THEMOVIE_URL,
+  baseURL: 'https://api.themoviedb.org/3',
 });
 
-const API_KEY = 'https://api.themoviedb.org/3';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export async function fetchTrendMovies() {
   const { data } = await TheMovieDb<IServerResponse<IMovies>>(
