@@ -1,22 +1,21 @@
-import { IResponseReviews, IRewiew } from './../types/reviews';
+import { IResponseReviews, IReview } from './../types/reviews';
 import { ICastResponse, ICast } from './../types/cast';
 import { IMovie } from './../types/movie';
 import axios from 'axios';
 import { IServerResponse, IMovies } from 'types/movies';
 
 const TheMovieDb = axios.create({
-  baseURL: process.env.REACT_APP_THEMOVIE_URL
-})
+  baseURL: process.env.REACT_APP_THEMOVIE_URL,
+});
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export async function fetchTrendMovies() {
-    const { data } = await TheMovieDb<IServerResponse<IMovies>>(
+  const { data } = await TheMovieDb<IServerResponse<IMovies>>(
     `/trending/all/day?api_key=${API_KEY}`
   );
   const { results } = data;
   return results;
-  
 }
 
 export async function fetchSearchMovies(query: string, page = 1) {
@@ -43,7 +42,7 @@ export async function fetchActorsMovie(movieId: string | undefined) {
 }
 
 export async function fetchReviewMovie(movieId: string | undefined) {
-  const { data } = await TheMovieDb<IResponseReviews<IRewiew>>(
+  const { data } = await TheMovieDb<IResponseReviews<IReview>>(
     `/movie/${movieId}/reviews?api_key=${API_KEY}`
   );
   const { results } = data;

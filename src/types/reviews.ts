@@ -5,7 +5,7 @@ export interface IResponseReviews<T> {
   total_pages: number;
   total_results: number;
 }
-export interface IRewiew {
+export interface IReview {
   author: string;
   author_details: IAuthorDetails;
   content: string;

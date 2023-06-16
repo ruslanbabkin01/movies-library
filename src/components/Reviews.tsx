@@ -3,21 +3,21 @@ import { fetchReviewMovie } from '../api/themoviedbAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { IRewiew } from 'types/reviews';
+import { IReview } from 'types/reviews';
 
 export default function Reviews() {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState<IRewiew[]>([]);
+  const [reviews, setReviews] = useState<IReview[]>([]);
 
   useEffect(() => {
     async function fetchMovie() {
       try {
         const data = await fetchReviewMovie(movieId);
         setReviews(data);
-     } catch (e: unknown) {
+      } catch (e: unknown) {
         const error = e as AxiosError;
         console.log(error.message);
-        toast.error(error.message)
+        toast.error(error.message);
       }
     }
     fetchMovie();

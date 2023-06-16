@@ -31,12 +31,12 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
   function checkCurrentMovie(
     array: IMovie[],
     currentMovieId: number,
-    togleFunc: Function
+    toggleFunc: Function
   ) {
     const findCurrentMovie = array.find(
       (item: IMovie) => item.id === currentMovieId
     );
-    findCurrentMovie ? togleFunc(true) : togleFunc(false);
+    findCurrentMovie ? toggleFunc(true) : toggleFunc(false);
   }
 
   function findInWatchedMovie(id: number) {
@@ -90,7 +90,7 @@ export const MovieCard = ({ movie }: IModvieCardProps) => {
           Rating:{' '}
           <span className="text-red-500">{movie.vote_average.toFixed(1)}</span>
         </p>
-        <h3 className="text-lg font-semibold ">Owerview</h3>
+        <h3 className="text-lg font-semibold ">Overview</h3>
         <p className="mb-2">{movie.overview}</p>
         <h4 className="font-semibold text-lg">Genres</h4>
         <p className="mb-5 lg:mb-16">

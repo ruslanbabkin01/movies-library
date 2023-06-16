@@ -9,10 +9,11 @@ The application has 3 pages Home, Movies, and Library. The Home page loads popul
 
 ## Technologies
 - **react**
-- react-router-dom
-- tailwindcss
-- axios
-- local-storage
+- TypeScript
+- React-router-dom
+- Tailwindcss
+- Axios
+- Local-storage
 
 
 ## Project setup
